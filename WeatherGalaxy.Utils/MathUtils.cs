@@ -13,24 +13,24 @@ namespace WeatherGalaxy.Utils
             return value1 == value2;
         }
 
-        private static double GetSlope(Planet planet)
-        {
-            return planet.GetY() / planet.GetX();
-        }
-
         public static bool AlignedWithSun(double[] p1, double[] p2, double[] p3, Sun sun)
         {
             return IsPointsAligned(sun.GetXY(), p1, p2) && IsPointsAligned(sun.GetXY(), p2, p3);
         }
 
-        public static double TriangleOrientation(double[] p1, double[] p2, double[] p3)
+        public static bool TriangleOrientation(double[] p1, double[] p2, double[] p3)
         {
             // If orientation >= 0  => positive
             // If orientation <= 0  => negative
 
             // Triangle ABC => Orientation: (A.x - C.x) * (B.y - C.y) - (A.y - C.y) * (B.x - C.x)
 
-            return ((p1[0] - p3[0]) * (p2[1] - p3[1])) - ((p1[1] - p3[1]) * (p2[0] - p3[0]));
+            if ((((p1[0] - p3[0]) * (p2[1] - p3[1])) - ((p1[1] - p3[1]) * (p2[0] - p3[0]))) >= 0)
+            {
+                return true;
+            }
+            else
+                return false;
         }
 
         public static bool IsTriangle(double[] p1, double[] p2, double[] p3)

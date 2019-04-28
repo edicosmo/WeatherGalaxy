@@ -36,7 +36,7 @@
             var pointsP2 = galaxy.Planets[1].GetXY();
             var pointsP3 = galaxy.Planets[2].GetXY();
 
-            return !IsDrought(galaxy) && !IsRaining(galaxy);
+            return !IsDrought(galaxy) && MathUtils.IsPointsAligned(pointsP1,pointsP2,pointsP3);
         }
     }
 }

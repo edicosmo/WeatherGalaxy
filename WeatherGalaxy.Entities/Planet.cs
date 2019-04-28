@@ -13,7 +13,7 @@ namespace WeatherGalaxy.Entities
         private int Radius { get; set; }
 
         public Planet(string name, int speed, RotationEnum rotation, int radius, int day)
-            :base(name)
+            : base(name)
         {
             Speed = speed;
             Rotation = rotation;
@@ -23,8 +23,8 @@ namespace WeatherGalaxy.Entities
 
         public void SetPosition(int day)
         {
-            PositionX = Math.Cos(Speed * day * (int)Rotation);
-            PositionY = Math.Sin(Speed * day * (int)Rotation);
+            PositionX = Math.Round(Math.Cos(Speed * day * (int)Rotation), 1);
+            PositionY = Math.Round(Math.Sin(Speed * day * (int)Rotation), 1);
         }
 
     }

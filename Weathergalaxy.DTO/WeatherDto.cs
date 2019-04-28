@@ -11,5 +11,10 @@ namespace WeatherGalaxy.DTO
         public int Day { get; set; }
 
         public string Weather { get; set; }
+
+        public WeatherDto(int day)
+        {
+            Day = day;
+        }
     }
 }

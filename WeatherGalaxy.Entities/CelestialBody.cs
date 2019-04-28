@@ -8,10 +8,6 @@ namespace WeatherGalaxy.Entities
 {
     public abstract class CelestialBody
     {
-        private string v1;
-        private int v2;
-        private int v3;
-
         public CelestialBody(string name, double positionX, double positionY)
             :this(name)
         {

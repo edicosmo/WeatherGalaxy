@@ -9,25 +9,15 @@ using WeatherGalaxy.Factory;
 
 namespace WeatherGalaxy.Utils
 {
-    public class GalaxyController: ApiController
+    /// <summary>
+    /// 
+    /// </summary>
+    public class GalaxyController : ApiController
     {
-        // GET api/clima/5
+        //GET api/Galaxy/GetWeatherResume
 
         /// <summary>
-        ///  Return a list of strings.
-        /// </summary>
-        /// <param name="day"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public IEnumerable<string> Clima(int day)
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        //GET api/GetWeatherResume
-
-        /// <summary>
-        /// Return a resume of Weather
+        ///  Return a summary.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -35,16 +25,11 @@ namespace WeatherGalaxy.Utils
         {
             var weatherResume = CreateWeatherResume();
 
-            var galaxy = new Galaxy();
-
-            galaxy.Planets.Add(PlanetFactory.GetPlanetVulcano());
-            galaxy.Planets.Add(PlanetFactory.GetPlanetBetasoide());
-            galaxy.Planets.Add(PlanetFactory.GetPlanetFerengi());
-            galaxy.Sun = new Sun();
+            var galaxy = CreateGalaxy();
 
             // 1 year = 360 days
 
-            for (int day = 1; day < 3600; day++)
+            for (int day = 1; day <= 3600; day++)
             {
                 galaxy.SetPositionToPlanets(day);
 
@@ -77,6 +62,39 @@ namespace WeatherGalaxy.Utils
             return weatherResume;
         }
 
+        /// <summary>
+        /// Based on a specific day, return the weather for that day.
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public WeatherDto Clima(int day)
+        {
+            var galaxy = CreateGalaxy();
+            var weather = new WeatherDto(day);
+
+            galaxy.SetPositionToPlanets(day);
+
+            if (WeatherUtils.IsDrought(galaxy))
+            {
+                weather.Weather = "Sequia";
+            }
+            else if (WeatherUtils.IsRaining(galaxy))
+            {
+                weather.Weather = "Lluvia";
+            }
+            else if (WeatherUtils.IsOptimal(galaxy))
+            {
+                weather.Weather = "Optimo";
+            }
+            else
+            {
+                weather.Weather = "Desconocido";
+            }
+
+            return weather;
+        }
+
         private WeatherResumeDto CreateWeatherResume()
         {
             var weatherResume = new WeatherResumeDto();
@@ -87,6 +105,18 @@ namespace WeatherGalaxy.Utils
             weatherResume.UnknownDays = 0;
 
             return weatherResume;
+        }
+
+        private Galaxy CreateGalaxy()
+        {
+            var galaxy = new Galaxy();
+
+            galaxy.Planets.Add(PlanetFactory.GetPlanetVulcano());
+            galaxy.Planets.Add(PlanetFactory.GetPlanetBetasoide());
+            galaxy.Planets.Add(PlanetFactory.GetPlanetFerengi());
+            galaxy.Sun = new Sun();
+
+            return galaxy;
         }
     }
 }

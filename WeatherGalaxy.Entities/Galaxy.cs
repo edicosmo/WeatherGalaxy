@@ -8,7 +8,10 @@ namespace WeatherGalaxy.Entities
         public List<Planet> Planets { get; set; }
 
         public Sun Sun { get; set; }
-
+        public Galaxy()
+        {
+            Planets = new List<Planet>();
+        }
         public void SetPositionToPlanets(int day)
         {
             foreach (var planet in Planets)
