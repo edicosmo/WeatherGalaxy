@@ -1,5 +1,4 @@
 ﻿using System;
-using WeatherGalaxy.Entities;
 
 namespace WeatherGalaxy.Utils
 {
@@ -13,9 +12,9 @@ namespace WeatherGalaxy.Utils
             return value1 == value2;
         }
 
-        public static bool AlignedWithSun(double[] p1, double[] p2, double[] p3, Sun sun)
+        public static bool AlignedWithSun(double[] p1, double[] p2, double[] p3, double[] sun)
         {
-            return IsPointsAligned(sun.GetXY(), p1, p2) && IsPointsAligned(sun.GetXY(), p2, p3);
+            return IsPointsAligned(sun, p1, p2) && IsPointsAligned(sun, p2, p3);
         }
 
         public static bool TriangleOrientation(double[] p1, double[] p2, double[] p3)

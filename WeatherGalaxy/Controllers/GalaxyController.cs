@@ -7,7 +7,7 @@ using WeatherGalaxy.DTO;
 using WeatherGalaxy.Entities;
 using WeatherGalaxy.Factory;
 
-namespace WeatherGalaxy.Utils
+namespace WeatherGalaxy.Api
 {
     /// <summary>
     /// 
@@ -33,11 +33,11 @@ namespace WeatherGalaxy.Utils
             {
                 galaxy.SetPositionToPlanets(day);
 
-                if (WeatherUtils.IsDrought(galaxy))
+                if (Weather.IsDrought(galaxy))
                 {
                     weatherResume.DroughtDays++;
                 }
-                else if (WeatherUtils.IsRaining(galaxy))
+                else if (Weather.IsRaining(galaxy))
                 {
                     var galaxyPerimeter = galaxy.GetPerimeter();
 
@@ -49,7 +49,7 @@ namespace WeatherGalaxy.Utils
                         weatherResume.MaxPerimeter = galaxyPerimeter;
                     }
                 }
-                else if (WeatherUtils.IsOptimal(galaxy))
+                else if (Weather.IsOptimal(galaxy))
                 {
                     weatherResume.OptimalDays++;
                 }
@@ -75,15 +75,15 @@ namespace WeatherGalaxy.Utils
 
             galaxy.SetPositionToPlanets(day);
 
-            if (WeatherUtils.IsDrought(galaxy))
+            if (Weather.IsDrought(galaxy))
             {
                 weather.Weather = "Sequia";
             }
-            else if (WeatherUtils.IsRaining(galaxy))
+            else if (Weather.IsRaining(galaxy))
             {
                 weather.Weather = "Lluvia";
             }
-            else if (WeatherUtils.IsOptimal(galaxy))
+            else if (Weather.IsOptimal(galaxy))
             {
                 weather.Weather = "Optimo";
             }

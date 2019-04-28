@@ -42,13 +42,6 @@
   <ItemGroup>
     <Compile Include="MathUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WeatherUtils.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WeatherGalaxy.Entities\WeatherGalaxy.Entities.csproj">
-      <Project>{59D6AA5A-74C9-4476-94A3-6FFE5C6F0654}</Project>
-      <Name>WeatherGalaxy.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

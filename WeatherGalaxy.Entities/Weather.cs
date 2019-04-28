@@ -1,12 +1,12 @@
-﻿namespace WeatherGalaxy.Utils
-{
-    using Entities;
+﻿using WeatherGalaxy.Utils;
 
-    public static class WeatherUtils
+namespace WeatherGalaxy.Entities
+{
+    public static class Weather
     {
         public static bool IsDrought(Galaxy galaxy)
         {
-            return MathUtils.AlignedWithSun(galaxy.Planets[0].GetXY(), galaxy.Planets[1].GetXY(), galaxy.Planets[0].GetXY(), galaxy.Sun);
+            return MathUtils.AlignedWithSun(galaxy.Planets[0].GetXY(), galaxy.Planets[1].GetXY(), galaxy.Planets[0].GetXY(), galaxy.Sun.GetXY());
         }
 
         public static bool IsRaining(Galaxy galaxy)
