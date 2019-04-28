@@ -46,7 +46,7 @@
     <Compile Include="Planet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sun.cs" />
-    <Compile Include="Weather.cs" />
+    <Compile Include="WeatherCondition.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Weathergalaxy.DTO\WeatherGalaxy.DTO.csproj">

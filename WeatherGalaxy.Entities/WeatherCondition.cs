@@ -2,7 +2,7 @@
 
 namespace WeatherGalaxy.Entities
 {
-    public static class Weather
+    public static class WeatherCondition
     {
         public static bool IsDrought(Galaxy galaxy)
         {
